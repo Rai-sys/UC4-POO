@@ -26,16 +26,52 @@ class controllerNotebook {
             console.error("Erro ao listar notebook:", error.message);
         }
     }
-    editarNotebook() {
+    buscarNotebook(numeroSerie) {
         try {
-            
+            const notebook = databaseNotebook.find(n => n.getNumeroSerie === numeroSerie);
+            if (!notebook) {
+                console.error('Notebook não encontrado.', numeroSerie);
+                return;
+            }
+            console.log('Notebook encontrado: ');
+            console.table([notebook]);
+            return notebook;
         } catch (error) {
-            
+            console.error('Erro ao buscar notebook:', error.message);
         }
     }
-    excluirNotebook() {
+    editarNotebook(numeroSerie, novaMarca, novoModelo, novaCor, novoPreco) {
         try {
-            
+            const notebook = this.buscarNotebook(numeroSerie);
+            if(notebook) {
+                notebook.marca = novaMarca;
+                notebook.modelo = novoModelo;
+                notebook.cor = novaCor;
+                notebook.setPreco = novoPreco;
+                return notebook;
+            }
+        } catch (error) {
+            console.error('Erro ao atualizar notebook: ', error.message);
+        }
+    }
+    excluirNotebook(numeroSerie) {
+        try {
+            const notebook = this.buscarNotebook(numeroSerie);
+            if(notebook) {
+                const index = databaseNotebook.findIndex(n => n.getNumeroSerie === numeroSerie);
+                const notebookRemovido = databaseNotebook.splice(index, 1);
+                console.log('Notebook removido com sucesso');
+                return notebookRemovido;
+            }
+        } catch (error) {
+            console.error('Erro ao remover notebook.', error.message)
+        }
+    }
+    excluirTodosNotebook() {
+        try {
+            if(databaseNotebook.length > 0) {
+                databaseNotebook.length = 0;
+            }
         } catch (error) {
             
         }
