@@ -4,8 +4,8 @@ class TarefasProfissionais extends Tarefa {
     #prioridade;
     #data;
 
-    constructor(prioridade, data) {
-        super(descricao, finalizado);
+    constructor(descricao, status, prioridade, data) {
+        super(descricao, status);
         this.#prioridade = prioridade;
         this.#data = data;
         Object.freeze(this);
@@ -23,7 +23,7 @@ class TarefasProfissionais extends Tarefa {
         this.#data = data;
     }
     getInfo() {
-        console.log(`Descrição da atividade: ${this.getDescricao}, Finalizado: ${this.getFinalizado}, Prioridade: ${this.getPrioridade}, Data: ${this.getData}`);
+        console.table(`Descrição da atividade: ${this.getDescricao}, Status: ${this.getStatus}, Prioridade: ${this.getPrioridade}, Data: ${this.getData}`);
     }
 
 }

@@ -1,10 +1,10 @@
 class Tarefa {
     #descricao;
-    #finalizado;
+    #status;
 
-    constructor(descricao, finalizado) {
+    constructor(descricao, status) {
         this.#descricao = descricao;
-        this.#finalizado = finalizado;
+        this.#status = status;
     }
     get getDescricao() {
         return this.#descricao;
@@ -12,14 +12,14 @@ class Tarefa {
     set setDescricao(descricao) {
         this.#descricao = descricao;
     }
-    get getFinalizado() {
-        return this.#finalizado;
+    get getStatus() {
+        return this.#status;
     }
     getInfo() {
-        console.log(`Descrição da atividade: ${this.getDescricao}, Finalizado: ${this.getFinalizado}, Prioriade: ${this.getPrioridade}, Data: ${this.getData}`);
+        console.table(`Descrição da atividade: ${this.getDescricao}, Status: ${this.getStatus}`);
     }
     finalizarTarefa() {
-        if (this.#finalizado === 'sim') {
+        if (this.getStatus === 'sim') {
             console.log("finalizado");
         }else {
             console.log('vai estudar');
